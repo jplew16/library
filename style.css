@@ -1,0 +1,102 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+    --top-nav-bg-color: rgb(255, 185, 55); 
+    --button-shadow: rgb(199, 199, 38);
+    --card-bg-color: rgb(187, 122, 37);
+}
+h2 {
+    text-align: center;
+    padding: 0.5rem;
+    font-size: 3rem;
+}
+.top-nav {
+    height: 5rem;
+    width: 100%;
+}
+.wrapper {
+    position: relative;
+    height: 100%;
+    border: 5px solid;
+    width: 100%;
+    margin: 0.5rem auto;
+    border-radius: 5px;
+    background-color: var(--top-nav-bg-color);
+}
+#colorstrip {
+    display: block;
+    height: 100%;
+}
+#add-book {
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    left: 5%;
+    width: 25%;
+    height: 80%;
+    font-size: 1.5rem;
+    box-shadow: 0 0 5px 0.2rem var(--button-shadow);
+}
+#add-book:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.card {
+    margin: 6rem 2rem;
+    max-width: 50%;
+    height: 100%;
+    border: 5px solid;
+    background-color: var(--card-bg-color);
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.card li:nth-of-type(2n):not(h2) {
+    border: 1px black solid;
+    font-size: 1.5rem;
+} 
+
+.card li:not(h2) {
+    text-align: center;
+    list-style-type: none;
+    flex: 1 0 50%;
+    padding: 1%;
+    margin: 0.2rem auto;
+}
+    
+.card .title {
+    width: 100%;
+    flex: 1 0 auto;
+    text-align: center;
+    border-bottom: black 5px dotted;
+    font-size: 2rem;
+}
+.buttons-parent {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    width: 100%;
+    padding: 5%;
+}
+.buttons-parent button {
+    font-size: 1.2rem;
+}
+#remove {
+    align-self: flex-start;
+}
+#read {
+    align-self: flex-end;
+}
+
+body {
+    display: flex;
+    flex-flow: row wrap;
+    background-color: var(--main-shelf-bg-color);
+}
