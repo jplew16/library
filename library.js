@@ -3,9 +3,11 @@ let library = [];
 function bookActions() {
 
 }
-bookActions.prototype.readToggle = function(readText) {
-    this.read = !this.read;
-    readText.textContent = capitalize((this.read).toString());
+bookActions.prototype.readToggle = function(readData) {
+    this['Read Status'] = !this['Read Status'];
+    readData.textContent = capitalize(
+        (insertReadText(this['Read Status']))
+        .toString());
 }
 function book([title, author, genre, medium, read = false]) {
     this['Title'] = title;
@@ -35,6 +37,15 @@ let displayBook = function(book) {
     addActions(card);
 }
 book.prototype = Object.create(bookActions.prototype);
+
+function insertReadText(readData) {
+    if (Boolean(readData) === true) {
+        return readData = 'Read'
+    }
+    else {
+        return readData = 'Not Read';
+    }
+}
 
 function addTitle(card, obj, meta) {
     meta = document.createElement('h2');
@@ -71,8 +82,8 @@ let rmBook = (e) => {
 let readBook = (e) => {
     let card = e.target.closest('.card');
     let index = card.dataset.index;
-    let readText = card.querySelector('.meta-read-status');
-    library[index].readToggle(readText);
+    let readData = card.querySelector('.meta-read-status');
+    library[index].readToggle(readData);
 }
 function addMeta(card, metaLabels, metaData, metaKeys, meta) {
     meta = document.createElement('li');
@@ -83,10 +94,11 @@ function addMeta(card, metaLabels, metaData, metaKeys, meta) {
     metaKeys.classList.add('keys');
     if (metaLabels === 'Read Status') {
         meta.classList.add('meta-read-status');
+        meta.textContent = insertReadText(metaData);
     } else {
         meta.classList.add('meta-' + metaLabels.toLowerCase());
+        meta.textContent = capitalize(metaData);
     }
-    meta.textContent = capitalize(metaData);
     card.append(meta);
     
 }
@@ -98,12 +110,12 @@ function capitalize(string) {
 }
 let form = document.querySelector('#book-input');
 form.addEventListener('submit', function(event) {
-    event.preventDefault();    
     let newBook = [];
         for (let i = 0; i < 5; i++) {
             newBook.push(event.target.elements[i].value);
         }
         makeBook(newBook);
+        event.preventDefault();    
 });
 
 function makeBook(bookData) {
@@ -111,8 +123,3 @@ function makeBook(bookData) {
     library.push(newBook);
     displayBook(library[library.length - 1]);
 }
-function storeBooks() {
-    localStorage.clear();
-    library.forEach((bookObj, index) => {
-        localStorage.setItem(`book${index}`, JSON.stringify(bookObj, replacer));
-    })};
