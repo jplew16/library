@@ -6,7 +6,7 @@
     box-sizing: border-box;
 }
 :root {
-    --top-nav-bg-color: rgb(255, 185, 55); 
+    --top-nav-bg-color: rgb(121, 133, 13); 
     --button-shadow: rgb(199, 199, 38);
     --card-bg-color: rgb(187, 122, 37);
 }
@@ -94,7 +94,28 @@ h2 {
 #read {
     align-self: flex-end;
 }
-
+.book-input {
+    position: absolute;
+    display: block;
+    width: 75%;
+    height: 75%;
+    top: 50%;
+    left: 50%;
+    z-index: 5;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 5%;
+}
+.overlay {
+    position: absolute;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100vw;
+    height: 100vh;
+}
+.active {
+    display: none;
+}
 body {
     display: flex;
     flex-flow: row wrap;
