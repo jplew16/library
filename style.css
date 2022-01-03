@@ -16,31 +16,31 @@
 h2 {
     text-align: center;
     padding: 0.5rem;
+    display: block;
     font-size: 3rem;
 }
 .top-nav {
     height: 5rem;
     width: 100%;
+    height: 100%;
+    margin: 0.5rem auto;
 }
 .wrapper {
-    position: relative;
+    display: block;
     height: 100%;
     border: 5px solid;
     width: 100%;
-    margin: 0.5rem auto;
-    border-radius: 5px;
     background-color: var(--top-nav-bg-color);
 }
 .colorstrip {
     display: block;
     height: 100%;
+    padding: 0.2rem;
 }
-.add-book {
-    position: absolute;
-    transform: translateY(-50%);
-    top: 50%;
-    left: 5%;
+.colorstrip .add-book {
     width: 25%;
+    display: block;
+    margin: 0.4rem;
     height: 80%;
     font-size: 1.5rem;
     box-shadow: 0 0 5px 0.2rem var(--button-shadow);
@@ -49,7 +49,7 @@ h2 {
     background-color: rgba(0, 0, 0, 0.5);
 }
 .card {
-    margin: 6rem 2rem;
+    margin: 4rem 2rem;
     max-width: 50%;
     height: 100%;
     border: 5px solid;
@@ -98,60 +98,67 @@ h2 {
     align-self: flex-end;
 }
 .book-input {
-    position: absolute;
     display: block;
     width: 75%;
     height: 75%;
-    top: 50%;
-    left: 50%;
-    z-index: 5;
-    transform: translate(-50%, -50%);
     background-color: white;
     border-radius: 5%;
+    margin: 0 auto;
 }
 .book-form {
-    position: absolute;
     background-color: lavender;
-    border-radius: 5%;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 40%;
+    width: 100%;
     height: 100%;
-    z-index: 4;
     display: block;
 }
-.book-form .input-container {
-    display: inline-block;
+.book-form h2 {
+    font-size: 2rem;
+}
+.book-form .top-form {
+    display: block;
     padding: 0 5%;
-    margin: 0.5em 2em;
-    width: 40%;
+    margin: 0.2% auto;
+    width: 80%;
     height: 10%;
 }
-.book-form label {
-    display: block;
+.top-form label {
+    display: inline;
     width: 100%;
     margin: 0.2em auto;
     text-align: center;
     background-color: rgb(214, 216, 211);
 }
-.book-form input {
+.top-form input {
+    display: inline;
     font-size: 14px;
-    width: 100%;
+    width: auto;
     text-align: center;
     padding: 0.2em;
     margin: 0.2em auto;
 }
-.overlay {
+.top-right-x {
+    display: inline;
+    float: right;
+    margin: 0.2rem 0.5rem;
+}
+.bottom-form * {
+    display: inline;
+
+}
+.bottom-form button {
+    float: right;
+    margin: 0 0.5rem;
+}
+/* .overlay {
     position: absolute;
     z-index: 2;
     background-color: rgba(0, 0, 0, 0.6);
     width: 100vw;
     height: 100vh;
-}
-.active {
+} */
+/* .active {
     display: none;
-}
+} */
 body {
     display: flex;
     flex-flow: row wrap;

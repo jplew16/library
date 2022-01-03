@@ -15,43 +15,45 @@
   <div class='top-nav'>
     <h2>Your Library</h2>
     <div class='wrapper'>
-    <div class='colorstrip'></div>
-    <button class='add-book'>New Book</button>
+    <div class='colorstrip'>
+      <button class='add-book'>New Book</button>
+    </div>
     </div>
   </div>
-  <div class="overlay active"></div>
   <div class='book-form'>
     <h2>Enter Book Data</h2>
-    <div class='cancel'>&times;</div>
+    <div class='top-right-x'>&times;</div>
   <form id='book-input'>
-    <div class='input-container'>
-    <label for='title'>Title:</label>
+    <div class='top-form'>
+      <label for='title'>Title:</label>
       <input type='text' id='title' name='title' 
       value='Then and Always' placeholder='Then and Always'>
-      </div>
-      <div class='input-container'>
       <label for='author'>Author:</label>
       <input type='text' id='author' name='author' 
       value='John Smith' placeholder='John Smith'>
-      </div>
-      <div class='input-container'>
       <label for='genre'>Genre:</label>
       <input type='text' id='genre' name='genre' 
       value='Fiction' placeholder='Fiction'>
-      </div>
-      <div class='input-container'>
       <label for='author'>Author:</label>
       <input type='text' id='medium' name='medium' 
       value='Paperback' placeholder='Paperback'>
-      </div>
-      <div class='input-container'>
-      <label for='read'>Read Status:</label>
+      
+      <div class='bottom-form'>
+      <p>Read Status:</p>
+      <label for='read'>Read
       <input type='checkbox' id='read' name='read' 
       value='true' checked>
-      <input type='reset'>
-      <input type='submit' value='Submit'>
-      </div>
-    <button>Cancel</button>
+      </label>
+      <label for='unread'>Unread
+      <input type='checkbox' id='unread' name='unread' 
+      value='false' checked>
+      </label>
+      <button type='reset'>Reset</button>
+      <button type='submit'>Submit</button>
+    </div>  
+    <button type='button'>Cancel</button>
+    </div>
+    </div>
   </form>
   </div>
   <script src='library.js'></script>
