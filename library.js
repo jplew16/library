@@ -3,11 +3,10 @@ let library = [];
 function bookActions() {
 
 }
-bookActions.prototype.readToggle = function(readData) {
+bookActions.prototype.readToggle = function (readData) {
     this['Read Status'] = !this['Read Status'];
     readData.textContent = capitalize(
-        (insertReadText(this['Read Status']))
-        .toString());
+        (insertReadText(this['Read Status'])));
 }
 function book([title, author, genre, medium, read = false]) {
     this['Title'] = title;
@@ -16,20 +15,20 @@ function book([title, author, genre, medium, read = false]) {
     this['Medium'] = medium;
     this['Read Status'] = read;
 }
-let displayBook = function(book) {
+let displayBook = function (book) {
     let i = 0;
     let card = document.createElement('ul');
     card.classList.add('card');
     card.setAttribute('data-index', library.length - 1);
     document.body.append(card);
-    
+
     for (let key in book) {
         if (i == 0) {
             addTitle(card, book[key]);
             i++;
             continue;
         } else {
-            addMeta(card, key, book[key].toString());
+            addMeta(card, key, book[key]);
             i++;
             if (i == 5) break;
         }
@@ -39,7 +38,7 @@ let displayBook = function(book) {
 book.prototype = Object.create(bookActions.prototype);
 
 function insertReadText(readData) {
-    if (Boolean(readData) === true) {
+    if (readData === true) {
         return readData = 'Read'
     }
     else {
@@ -50,7 +49,7 @@ function insertReadText(readData) {
 function addTitle(card, obj, meta) {
     meta = document.createElement('h2');
     meta.classList.add('title');
-    
+
     card.append(meta);
     meta.textContent = obj;
 }
@@ -58,7 +57,7 @@ function addActions(card) {
     let parent = document.createElement('div');
     let del = document.createElement('button');
     let read = document.createElement('button');
-    
+
     parent.classList.add('buttons-parent');
     del.textContent = 'Remove';
     del.id = 'remove';
@@ -75,7 +74,7 @@ function addListeners(del, read) {
 let rmBook = (e) => {
     let card = e.target.closest('.card');
     let index = card.dataset.index;
-    
+
     library.splice(index, 1);
     card.remove();
 }
@@ -90,7 +89,7 @@ function addMeta(card, metaLabels, metaData, metaKeys, meta) {
     metaKeys = document.createElement('li');
     metaKeys.textContent = metaLabels;
     card.append(metaKeys);
-    
+
     metaKeys.classList.add('keys');
     if (metaLabels === 'Read Status') {
         meta.classList.add('meta-read-status');
@@ -100,23 +99,43 @@ function addMeta(card, metaLabels, metaData, metaKeys, meta) {
         meta.textContent = capitalize(metaData);
     }
     card.append(meta);
-    
+
 }
 function capitalize(string) {
     return string.replace(
-        string.charAt(0), 
+        string.charAt(0),
         string.charAt(0).toUpperCase()
-        );
+    );
 }
 let form = document.querySelector('#book-input');
-form.addEventListener('submit', function(event) {
+form.addEventListener('submit', function (event) {
     let newBook = [];
-        for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 6; i++) {
+        if (i < 4) {
             newBook.push(event.target.elements[i].value);
         }
-        makeBook(newBook);
-        event.preventDefault();    
+        else if (i >= 4 && event.target.elements[i].checked === true) {
+            newBook.push(!!event.target.elements[i].value);
+        } else {
+            continue;
+        }
+    }
+    makeBook(newBook);
+    let inputs = document.querySelectorAll("input[type='text']");
+    inputs.forEach((input) => {
+        input.value = '';
+    });
+    event.preventDefault();
 });
+const newBkBtn = document.querySelector('button.add-book');
+const cancelBtn = document.querySelector('.cancel-btn');
+
+const toggleForm = function () {
+    let form = document.querySelector('div.book-form');
+    form.classList.toggle('active');
+};
+cancelBtn.addEventListener('click', toggleForm);
+newBkBtn.addEventListener('click', toggleForm);
 
 function makeBook(bookData) {
     let newBook = new book(bookData);
